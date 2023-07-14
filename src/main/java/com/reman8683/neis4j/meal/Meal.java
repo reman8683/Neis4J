@@ -1,6 +1,6 @@
-package com.reman8683.neis4j.dto;
+package com.reman8683.neis4j.meal;
 
-import com.reman8683.neis4j.api.MealInfo;
+import com.reman8683.neis4j.school.School;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,14 +11,14 @@ public class Meal {
     private final String mealYMD;
     private List<String> menu;
 
-    public Meal(School school, String mealYMD, List<String> menu) {
+    protected Meal(School school, String mealYMD, List<String> menu) {
         this.school = school;
         this.mealYMD = mealYMD;
         this.menu = menu;
     }
 
     public Meal(School school, String mealYMD) throws IOException {
-        Meal meal = new MealInfo().getMeal(school, mealYMD);
+        Meal meal = new MealInfoApi().getMeal(school, mealYMD);
         this.school = school;
         this.mealYMD = mealYMD;
         this.menu = meal.menu;

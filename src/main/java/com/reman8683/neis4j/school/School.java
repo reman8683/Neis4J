@@ -1,6 +1,5 @@
-package com.reman8683.neis4j.dto;
+package com.reman8683.neis4j.school;
 
-import com.reman8683.neis4j.api.FindSchool;
 import com.reman8683.neis4j.OfficeCode;
 
 import java.io.IOException;
@@ -12,7 +11,7 @@ public class School {
     private final String type;
     private final OfficeCode officeCode;
 
-    public School(String name, long schoolCode, String type, OfficeCode officeCode) {
+    protected School(String name, long schoolCode, String type, OfficeCode officeCode) {
         this.name = name;
         this.schoolCode = schoolCode;
         this.type = type;
@@ -20,7 +19,7 @@ public class School {
     }
 
     public School(String name) throws IOException {
-        School school = new FindSchool().byName(name);
+        School school = new FindSchoolApi().byName(name);
         this.name = school.name;
         this.schoolCode = school.schoolCode;
         this.type = school.type;
@@ -28,7 +27,7 @@ public class School {
     }
 
     public School(long schoolCode) throws IOException {
-        School school = new FindSchool().bySchoolCode(schoolCode);
+        School school = new FindSchoolApi().bySchoolCode(schoolCode);
         this.name = school.name;
         this.schoolCode = school.schoolCode;
         this.type = school.type;

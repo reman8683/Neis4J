@@ -1,9 +1,12 @@
 plugins {
     id 'java'
+    id 'signing'
+    id 'maven-publish'
 }
 
 group 'com.reman8683'
-version '1.0-SNAPSHOT'
+archivesBaseName = 'Neis4J'
+version = '1.0.0'
 
 repositories {
     mavenCentral()
@@ -16,6 +19,30 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.8'
 }
 
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 test {
     useJUnitPlatform()
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
 }
