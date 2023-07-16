@@ -6,3 +6,6 @@
 /gradle.properties
 /signing.pgp
 /.idea
+
+/publish.gradle
+/local.properties
